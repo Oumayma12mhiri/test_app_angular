@@ -10,6 +10,7 @@ import { ApiService } from './service/api.service';
 import { LoginComponent } from './login/login.component';
 import { AuthServiceService } from './service/auth-service.service';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   providers: [ApiService, AuthServiceService],
   bootstrap: [AppComponent]

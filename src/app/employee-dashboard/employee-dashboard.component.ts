@@ -32,6 +32,9 @@ export class EmployeeDashboardComponent implements OnInit {
     public authService:AuthServiceService
   ) { }
 
+  totalLength:any;
+  page:number = 1;
+
 
   ngOnInit(): void {
     this.getAllEmployee();
