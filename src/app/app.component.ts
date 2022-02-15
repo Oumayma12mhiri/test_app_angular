@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from './service/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app_test';
+
+
+
+  constructor(
+    public authService: AuthServiceService,
+  ) { }
+
+  onLogout() {
+    this.authService.logout()
+  }
+
 }

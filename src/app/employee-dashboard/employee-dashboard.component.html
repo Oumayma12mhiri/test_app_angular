@@ -1,15 +1,19 @@
-<nav class="navbar navbar-light bg-primary">
+<nav class=navbar navbar-default role=navigation>
     <div class="container-fluid">
-        <h1 style="color: cornsilk">AngularCRUD</h1>
+        <h1 style="color: green">Liste des utilisateurs</h1>
+        <a *ngIf="authService.isAdmin()">
         <div class="d-flex">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add
+            
+            <button  (click)="clickAddEmploye()" type="button" data-bs-toggle="modal"  data-bs-target="#exampleModal" class="btn btn-outline-success">Add
                 Employee</button>
+            
         </div>
+        </a>
     </div>
 </nav>
 
-<table class="table mt-3">
-    <thead>
+<table class="table table-bordered mt-3">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">Employee ID</th>
             <th scope="col">Name</th>
@@ -26,10 +30,11 @@
             <td>{{row.email}}</td>
             <td>{{row.numMobile}}</td>
             <td>{{row.salary}}</td>
-            <td>
-                <button (click)="onEdit(row)" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    class="btn btn-info">Edit</button>
-                <button (click)="deleteEmployee(row.id)" class="btn btn-danger mx-3">Delete</button>
+            <td><a *ngIf="authService.isAdmin()">
+                    <button (click)="onEdit(row)" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        class="btn btn-outline-warning">Edit</button>
+                    <button (click)="deleteEmployee(row.id)" class="btn btn-outline-danger mx-3">Delete</button>
+                </a> 
             </td>
         </tr>
     </tbody>
@@ -49,26 +54,26 @@
                 <form [formGroup]="formValue">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" formControlName="name" class="form-control" id="name"
+                        <input type="text" formControlName="name" class="form-control" required maxlength="20" placeholder="Name" id="name"
                             aria-describedby="emailHelp">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email ID</label>
-                            <input type="email" formControlName="email" class="form-control" id="email">
+                            <input type="email" formControlName="email" class="form-control" required placeholder="Foulen@gmail.com" id="email">
                         </div>
                         <div class="mb-3">
                             <label for="numMobile" class="form-label">Mobile Number</label>
-                            <input type="text" formControlName="numMobile" class="form-control" id="numMobile">
+                            <input type="text" formControlName="numMobile" class="form-control" required placeholder="(+216) ** *** ***" pattern="[1-9]{1}[0-9]{7}" id="numMobile">
                         </div>
                         <div class="mb-3">
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="text" formControlName="salary" class="form-control" id="salary">
+                            <input type="text" formControlName="salary" class="form-control" required id="salary">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="cancel" class="btn btn-secondary"
                             data-bs-dismiss="modal">Close</button>
-                        <button type="button" (click)="postEmployeeDetails()" class="btn btn-primary">Add</button>
-                        <button type="button" (click)="UpdateEmployeeDetails()" class="btn btn-primary">Update</button>
+                        <button type="button" *ngIf="showAdd" (click)="postEmployeeDetails()" class="btn btn-success">Add</button>
+                        <button type="button" *ngIf="showUpdate" (click)="UpdateEmployeeDetails()" class="btn btn-warning">Update</button>
                     </div>
                 </form>
             </div>

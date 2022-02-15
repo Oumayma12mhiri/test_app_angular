@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { EmployeeModel } from '../model/employee-dash board.model';
 import { ApiService } from '../service/api.service';
+import { AuthServiceService } from '../service/auth-service.service';
 
 
 
@@ -22,10 +23,13 @@ export class EmployeeDashboardComponent implements OnInit {
 
   employeeModelObj: EmployeeModel = new EmployeeModel();
   employeeData !: any;
+  showAdd!: boolean;
+  showUpdate!: boolean;
 
   constructor(
     private formbuilber: FormBuilder,
-    private api: ApiService
+    private api: ApiService,
+    public authService:AuthServiceService
   ) { }
 
 
@@ -33,6 +37,12 @@ export class EmployeeDashboardComponent implements OnInit {
     this.getAllEmployee();
   }
 
+
+clickAddEmploye(){
+  this.formValue.reset();
+  this.showAdd = true;
+  this.showUpdate = false ;
+}
   postEmployeeDetails() {
     this.employeeModelObj.name = this.formValue.value.name;
     this.employeeModelObj.email = this.formValue.value.email;
@@ -67,6 +77,8 @@ export class EmployeeDashboardComponent implements OnInit {
   }
 
   onEdit(row: any) {
+    this.showAdd = false;
+  this.showUpdate = true ;
     this.employeeModelObj.id = row.id;
     this.formValue.patchValue({
       name: row.name,
