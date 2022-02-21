@@ -27,7 +27,7 @@ export class ApiService {
     return this.http.post<EmployeeModel>(environment.API_URL+"users/", employee, { headers: this.getHeaders() });
   }
   public getEmploye(): Observable<EmployeeModel[]> {
-    return this.http.get<EmployeeModel[]>(environment.API_URL+"users/");
+    return this.http.get<EmployeeModel[]>(environment.API_URL+"users/get/");
   }
   public UpdateEmploye(employee: EmployeeModel, id: number) {
     return this.http.put<any>(environment.API_URL+"users/"+id, employee)

@@ -25,6 +25,7 @@ export class EmployeeDashboardComponent implements OnInit {
   employeeData !: any;
   showAdd!: boolean;
   showUpdate!: boolean;
+  i!: any;
 
   constructor(
     private formbuilber: FormBuilder,

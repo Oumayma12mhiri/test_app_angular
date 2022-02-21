@@ -24,8 +24,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of employeeData | paginate: { itemsPerPage: 4, currentPage: page , totalItems:totalLength }">
-            <td>{{row.id}}</td>
+        <tr *ngFor="let row of employeeData | paginate: { itemsPerPage: 4, currentPage: page , totalItems:totalLength } ; let i=index">
+            <td [attr.id]="i">{{i+1}}</td>
             <td>{{row.name}}</td>
             <td>{{row.email}}</td>
             <td>{{row.numMobile}}</td>

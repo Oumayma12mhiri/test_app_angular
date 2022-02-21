@@ -6,9 +6,9 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: 'employee', component: EmployeeDashboardComponent },
+  { path: 'employee', component: EmployeeDashboardComponent, canActivate:[EmployeeGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'forbidden', component: ForbiddenComponent, canActivate:[EmployeeGuard] },
+  { path: 'forbidden', component: ForbiddenComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' } 
   
 ];
